@@ -1,6 +1,6 @@
-package io.github.runkang10.compactmono.types.minecraft
+package io.github.runkang10.compactmono.types.command
 
-data class MinecraftCommandMeta(
+data class BrigadierCommandMeta(
     val description: String,
     val aliases: List<String> = emptyList()
 )
