@@ -15,7 +15,7 @@ class ServiceRegistry(val id: String) {
     }
 
     @Suppress("UNCHECKED_CAST")
-    fun <T : Any> get(kClass: KClass<T>) = registry.getValue(kClass)
+    fun <T : Any> get(kClass: KClass<T>) = registry.getValue(kClass) as T
     inline fun <reified T : Any> get() = get(T::class)
 
     fun <T : Any> contains(kClass: KClass<T>) = registry.contains(kClass)
