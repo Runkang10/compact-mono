@@ -7,7 +7,7 @@ import org.bukkit.plugin.java.JavaPlugin
 class EntityScheduler(
     private val plugin: JavaPlugin
 ) {
-    fun runNow(
+    fun run(
         entity: Entity,
         scheduledTask: (ScheduledTask) -> Unit,
         retired: (() -> Unit)? = {}
