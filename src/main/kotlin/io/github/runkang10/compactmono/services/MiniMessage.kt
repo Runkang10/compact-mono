@@ -11,11 +11,11 @@ val miniMessage by lazy {
     MiniMessage.builder()
         .editTags { t ->
             t
-                .resolver(colorOf("primary", TextColor.fromHexString("#2596be")))
-                .resolver(colorOf("secondary", TextColor.fromHexString("#99AAB5")))
-                .resolver(colorOf("success", TextColor.fromHexString("#00ffa6")))
-                .resolver(colorOf("danger", TextColor.fromHexString("#fc3a3a")))
-                .resolver(colorOf("warning", TextColor.fromHexString("#fff700")))
+                .resolver(colorOf("primary", "#2596be"))
+                .resolver(colorOf("secondary", "#99AAB5"))
+                .resolver(colorOf("success", "#00ffa6"))
+                .resolver(colorOf("danger", "#fc3a3a"))
+                .resolver(colorOf("warning", "#fff700"))
         }
         .build()
 }
@@ -23,5 +23,5 @@ val miniMessage by lazy {
 
 private fun colorOf(
     name: String,
-    color: TextColor?
-) = TagResolver.resolver(name, Tag.styling(color ?: NamedTextColor.WHITE))
+    color: String
+) = TagResolver.resolver(name, Tag.styling(TextColor.fromHexString(color) ?: NamedTextColor.WHITE))
