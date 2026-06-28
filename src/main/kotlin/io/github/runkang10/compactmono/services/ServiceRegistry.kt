@@ -2,7 +2,10 @@ package io.github.runkang10.compactmono.services
 
 import kotlin.reflect.KClass
 
-class ServiceRegistry(val id: String) {
+class ServiceRegistry(
+    val id: String,
+    val save: Boolean
+) {
     companion object {
         private val registries = mutableMapOf<String, ServiceRegistry>()
 
@@ -19,7 +22,7 @@ class ServiceRegistry(val id: String) {
 
 
     init {
-        registries[id] = this
+        if (save) registries[id] = this
     }
 
     inline fun <reified T : Any> add(instance: T) = add(T::class, instance)
