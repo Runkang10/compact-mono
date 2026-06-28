@@ -3,8 +3,24 @@ package io.github.runkang10.compactmono.services
 import kotlin.reflect.KClass
 
 class ServiceRegistry(val id: String) {
+    companion object {
+        private val registries = mutableMapOf<String, ServiceRegistry>()
+
+
+        fun contains(id: String) = registries.contains(id)
+
+        fun get(id: String) = registries.getValue(id)
+
+        fun remove(id: String) = registries.remove(id)
+    }
+
+
     private val registry = mutableMapOf<KClass<*>, Any>()
 
+
+    init {
+        registries[id] = this
+    }
 
     inline fun <reified T : Any> add(instance: T) = add(T::class, instance)
     fun <T : Any> add(

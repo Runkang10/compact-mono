@@ -65,19 +65,19 @@ fun <T> Argument<T>.execute(block: (CommandContext<CommandSourceStack>) -> Unit)
 fun Literal.permission(
     permission: String,
     default: PermissionDefault,
-    condition: () -> Boolean = { true }
+    condition: (CommandSourceStack) -> Boolean = { true }
 ): LiteralArgumentBuilder<CommandSourceStack> = requires {
     val sender = it.sender
     val permission = PermissionUtility.register(permission, default)
-    sender.hasPermission(permission) && condition()
+    sender.hasPermission(permission) && condition(it)
 }
 
 fun <T> Argument<T>.permission(
     permission: String,
     default: PermissionDefault,
-    condition: () -> Boolean = { true }
+    condition: (CommandSourceStack) -> Boolean = { true }
 ): Argument<T> = requires {
     val sender = it.sender
     val permission = PermissionUtility.register(permission, default)
-    sender.hasPermission(permission) && condition()
+    sender.hasPermission(permission) && condition(it)
 }
