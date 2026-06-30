@@ -9,12 +9,10 @@ fun textComponent(
     content: String,
     color: TextColor? = null,
     decoration: TextDecoration? = null,
-    builder: TextComponent.Builder.() -> Unit = {}
-) = Component.text()
+    builder: TextComponent.() -> Unit = {}
+) = Component.text(content, color)
     .content(content)
     .color(color)
     .also {
         if (decoration != null) it.decorate(decoration)
-    }
-    .apply(builder)
-    .build()
+    }.apply(builder)
