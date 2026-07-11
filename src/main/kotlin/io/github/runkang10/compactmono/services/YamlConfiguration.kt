@@ -1,7 +1,5 @@
 package io.github.runkang10.compactmono.services
 
-import io.github.runkang10.compactmono.types.GenericService
-import io.github.runkang10.compactmono.types.ReloadableService
 import kotlinx.serialization.DeserializationStrategy
 import net.mamoe.yamlkt.Yaml
 import java.io.File
