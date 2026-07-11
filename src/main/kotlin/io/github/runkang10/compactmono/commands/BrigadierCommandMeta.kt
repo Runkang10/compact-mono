@@ -1,4 +1,4 @@
-package io.github.runkang10.compactmono.types.commands
+package io.github.runkang10.compactmono.commands
 
 data class BrigadierCommandMeta(
     val description: String,
