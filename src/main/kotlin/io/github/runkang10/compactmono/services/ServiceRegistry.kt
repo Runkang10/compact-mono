@@ -30,6 +30,7 @@ class ServiceRegistry(
         kClass: KClass<T>,
         instance: T
     ) {
+        if (contains(kClass)) throw IllegalStateException("$instance is already added!")
         registry[kClass] = instance
     }
 
@@ -42,4 +43,6 @@ class ServiceRegistry(
 
     fun <T : Any> remove(kClass: KClass<T>) = registry.remove(kClass)
     inline fun <reified T : Any> remove() = remove(T::class)
+
+    fun clearAll() = registry.clear()
 }
