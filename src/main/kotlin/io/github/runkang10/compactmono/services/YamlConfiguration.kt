@@ -9,7 +9,7 @@ class YamlConfiguration<T : Any>(
     private val file: File,
     private val default: T,
     private val serializer: DeserializationStrategy<T>
-) : ReloadableService, GenericService {
+) : ReloadableService {
     private val yaml = Yaml { encodeDefaultValues = true }
     private val serializedDefault = yaml.encodeToString(default)
 
