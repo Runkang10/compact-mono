@@ -16,3 +16,10 @@ fun textComponent(
     .also {
         if (decoration != null) it.decorate(decoration)
     }.apply(builder)
+
+fun TextComponent.hoverComponent(
+    content: String,
+    color: TextColor? = null,
+    decoration: TextDecoration? = null,
+    builder: TextComponent.() -> Unit = {}
+) = hoverEvent(textComponent(content, color, decoration).apply(builder))
