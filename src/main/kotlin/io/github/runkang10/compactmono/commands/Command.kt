@@ -19,14 +19,14 @@ inline fun command(
 ) = Commands.literal(name).apply(builder)
 
 
-fun Literal.subcommand(
+inline fun Literal.subcommand(
     name: String,
     builder: Literal.() -> Unit
 ) {
     then(Commands.literal(name).apply(builder))
 }
 
-fun <T : Any> Argument<T>.subcommand(
+inline fun <T : Any> Argument<T>.subcommand(
     name: String,
     builder: Literal.() -> Unit
 ) {
@@ -34,7 +34,7 @@ fun <T : Any> Argument<T>.subcommand(
 }
 
 
-fun <T : Any> Literal.argument(
+inline fun <T : Any> Literal.argument(
     name: String,
     argument: ArgumentType<T>,
     builder: Argument<T>.() -> Unit
@@ -42,7 +42,7 @@ fun <T : Any> Literal.argument(
     then(Commands.argument(name, argument).apply(builder))
 }
 
-fun <T : Any, S : Any> Argument<S>.argument(
+inline fun <T : Any, S : Any> Argument<S>.argument(
     name: String,
     argument: ArgumentType<T>,
     builder: Argument<T>.() -> Unit
