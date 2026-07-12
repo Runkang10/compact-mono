@@ -81,3 +81,10 @@ fun <T> Argument<T>.permission(
     val permission = PermissionUtility.register(permission, default)
     sender.hasPermission(permission) && condition(it)
 }
+
+
+inline fun <reified T : Any> CommandContext<CommandSourceStack>.getArgument(
+    name: String
+) = runCatching {
+    getArgument(name, T::class.java)
+}.getOrNull()
