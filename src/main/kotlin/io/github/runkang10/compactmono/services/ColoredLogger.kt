@@ -1,10 +1,19 @@
 package io.github.runkang10.compactmono.services
 
+import io.github.runkang10.compactmono.utilities.miniMessage
 import net.kyori.adventure.text.Component
 import net.kyori.adventure.text.logger.slf4j.ComponentLogger
+import net.kyori.adventure.text.minimessage.MiniMessage
 import net.kyori.adventure.text.minimessage.tag.resolver.TagResolver
 
-class ColoredLogger(private val logger: ComponentLogger) {
+
+private val DefaultMiniMessage = miniMessage
+
+
+class ColoredLogger(
+    private val logger: ComponentLogger,
+    private val miniMessage: MiniMessage = DefaultMiniMessage
+) {
     fun info(
         content: String,
         tags: TagResolver = TagResolver.resolver()
