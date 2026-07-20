@@ -1,0 +1,19 @@
+[versions]
+kotlin = "2.4.10"
+maven-publish = "0.37.0"
+
+paper = "26.2.build.+"
+junit = "6.1.1"
+
+jdk = "25"
+
+
+[plugins]
+kotlin-jvm = { id = "org.jetbrains.kotlin.jvm", version.ref = "kotlin" }
+maven-publish = { id = "com.vanniktech.maven.publish", version.ref = "maven-publish" }
+
+
+[libraries]
+kotlin-stdlib = { module = "org.jetbrains.kotlin:kotlin-stdlib", version.ref = "kotlin" }
+paper = { module = "io.papermc.paper:paper-api", version.ref = "paper" }
+junit = { module = "org.junit.jupiter:junit-jupiter-api", version.ref = "junit" }

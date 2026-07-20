@@ -2,9 +2,8 @@ import com.vanniktech.maven.publish.Checksum
 import com.vanniktech.maven.publish.DeploymentValidation
 
 plugins {
-    kotlin("jvm") version "2.4.0"
-    kotlin("plugin.serialization") version "2.4.0"
-    id("com.vanniktech.maven.publish") version "0.37.0"
+    alias(libs.plugins.kotlin.jvm)
+    alias(libs.plugins.maven.publish)
 }
 
 repositories {
@@ -15,13 +14,19 @@ repositories {
 }
 
 dependencies {
-    compileOnly("io.papermc.paper:paper-api:26.2.build.+")
-    implementation("net.mamoe.yamlkt:yamlkt:0.13.0")
-    implementation("org.jetbrains.kotlinx:kotlinx-serialization-core:1.11.0")
+    compileOnly(libs.kotlin.stdlib)
+    compileOnly(libs.paper)
+
+    testImplementation(kotlin("test"))
+    testImplementation(libs.junit)
+}
+
+tasks.test {
+    useJUnitPlatform()
 }
 
 kotlin {
-    jvmToolchain(25)
+    jvmToolchain(libs.versions.jdk.get().toInt())
 }
 
 mavenPublishing {
@@ -31,7 +36,11 @@ mavenPublishing {
     checksums(Checksum.MD5, Checksum.SHA1, Checksum.SHA256, Checksum.SHA512)
     excludeSignatureChecksums(false)
 
-    coordinates("io.github.runkang10", "compact-mono", findProperty("version").toString())
+    coordinates(
+        "io.github.runkang10",
+        "compact-mono",
+        System.getenv("version") ?: error("'version' variable is missing!")
+    )
     pom {
         name.set(rootProject.name)
         description.set("A Kotlin library for Paper plugins.")
