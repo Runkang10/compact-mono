@@ -5,8 +5,12 @@ import net.kyori.adventure.text.format.TextColor
 import net.kyori.adventure.text.minimessage.MiniMessage
 import net.kyori.adventure.text.minimessage.tag.Tag
 import net.kyori.adventure.text.minimessage.tag.resolver.TagResolver
+import net.kyori.adventure.text.serializer.legacy.LegacyComponentSerializer
+import net.kyori.adventure.text.serializer.plain.PlainTextComponentSerializer
 
-
+val legacyAmpersand = LegacyComponentSerializer.legacyAmpersand()
+val legacySection = LegacyComponentSerializer.legacySection()
+val plainText = PlainTextComponentSerializer.plainText()
 val miniMessage by lazy {
     MiniMessage.builder()
         .editTags { t ->
