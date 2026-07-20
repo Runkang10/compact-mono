@@ -27,6 +27,7 @@ jobs:
       - name: Publish
         run: ./gradlew publishToMavenCentral --no-daemon --no-build-cache
         env:
+          release: true
           version: ${{ steps.version.outputs.version }}
           ORG_GRADLE_PROJECT_mavenCentralUsername: ${{ secrets.ORG_GRADLE_PROJECT_MAVENCENTRALUSERNAME }}
           ORG_GRADLE_PROJECT_mavenCentralPassword: ${{ secrets.ORG_GRADLE_PROJECT_MAVENCENTRALPASSWORD }}
