@@ -1,48 +1,34 @@
 package io.github.runkang10.compactmono.services
 
+import java.util.concurrent.ConcurrentHashMap
 import kotlin.reflect.KClass
 
-class ServiceRegistry(
-    val id: String,
-    val save: Boolean
-) {
-    companion object {
-        private val registries = mutableMapOf<String, ServiceRegistry>()
+@Suppress("UNCHECKED_CAST")
+class ServiceRegistry(threadSafe: Boolean = false) {
+    private val registry: MutableMap<KClass<*>, Any> = if (threadSafe) ConcurrentHashMap() else mutableMapOf()
 
-
-        fun contains(id: String) = registries.contains(id)
-
-        fun get(id: String) = registries.getValue(id)
-
-        fun remove(id: String) = registries.remove(id)
-    }
-
-
-    private val registry = mutableMapOf<KClass<*>, Any>()
-
-
-    init {
-        if (save) registries[id] = this
-    }
 
     inline fun <reified T : Any> add(instance: T) = add(T::class, instance)
     fun <T : Any> add(
         kClass: KClass<T>,
         instance: T
     ) {
-        if (contains(kClass)) throw IllegalStateException("$instance is already added!")
-        registry[kClass] = instance
+        val previous = registry.putIfAbsent(kClass, instance)
+        if (previous != null) throw IllegalStateException("$instance has been registered already")
     }
 
-    @Suppress("UNCHECKED_CAST")
-    fun <T : Any> get(kClass: KClass<T>) = registry.getValue(kClass) as T
+
+    fun <T : Any> getOrNull(kClass: KClass<T>) = registry[kClass] as? T
+    inline fun <reified T : Any> getOrNull() = getOrNull(T::class)
+
+    fun <T : Any> get(kClass: KClass<T>) = getOrNull(kClass) ?: error("No instance registered for $kClass")
     inline fun <reified T : Any> get() = get(T::class)
 
-    fun <T : Any> contains(kClass: KClass<T>) = registry.contains(kClass)
-    inline fun <reified T : Any> contains() = contains(T::class)
+    fun getAll() = registry.toMap()
+
 
     fun <T : Any> remove(kClass: KClass<T>) = registry.remove(kClass)
     inline fun <reified T : Any> remove() = remove(T::class)
 
-    fun clearAll() = registry.clear()
+    fun clear() = registry.clear()
 }
