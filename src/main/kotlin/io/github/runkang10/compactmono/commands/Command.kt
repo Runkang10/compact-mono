@@ -12,6 +12,8 @@ import org.bukkit.permissions.PermissionDefault
 
 typealias Literal = LiteralArgumentBuilder<CommandSourceStack>
 typealias Argument <T> = RequiredArgumentBuilder<CommandSourceStack, T>
+typealias ContextSourceStack = CommandContext<CommandSourceStack>
+
 
 inline fun command(
     name: String,
@@ -51,12 +53,12 @@ inline fun <T : Any, S : Any> Argument<S>.argument(
 }
 
 
-fun Literal.execute(block: (CommandContext<CommandSourceStack>) -> Unit): Literal = executes {
+fun Literal.execute(block: (ContextSourceStack) -> Unit): Literal = executes {
     block(it)
     1
 }
 
-fun <T> Argument<T>.execute(block: (CommandContext<CommandSourceStack>) -> Unit): Argument<T> = executes {
+fun <T> Argument<T>.execute(block: (ContextSourceStack) -> Unit): Argument<T> = executes {
     block(it)
     1
 }
@@ -83,8 +85,6 @@ fun <T> Argument<T>.permission(
 }
 
 
-inline fun <reified T : Any> CommandContext<CommandSourceStack>.getArgument(
-    name: String
-) = runCatching {
+inline fun <reified T : Any> ContextSourceStack.getArgument(name: String) = runCatching {
     getArgument(name, T::class.java)
 }.getOrNull()
