@@ -9,8 +9,8 @@ class EntityScheduler(
 ) {
     fun run(
         entity: Entity,
-        scheduledTask: (ScheduledTask) -> Unit,
-        retired: (() -> Unit)? = {}
+        retired: (() -> Unit)?,
+        scheduledTask: (ScheduledTask) -> Unit
     ): ScheduledTask? {
         val scheduler = entity.scheduler
         return scheduler.run(plugin, scheduledTask, retired)
@@ -19,8 +19,8 @@ class EntityScheduler(
     fun runDelayed(
         entity: Entity,
         delay: Long,
-        scheduledTask: (ScheduledTask) -> Unit,
-        retired: (() -> Unit)? = {}
+        retired: (() -> Unit)?,
+        scheduledTask: (ScheduledTask) -> Unit
     ): ScheduledTask? {
         val scheduler = entity.scheduler
         return scheduler.runDelayed(plugin, scheduledTask, retired, delay)
@@ -30,8 +30,8 @@ class EntityScheduler(
         entity: Entity,
         initialDelay: Long,
         delay: Long,
-        scheduledTask: (ScheduledTask) -> Unit,
-        retired: (() -> Unit)? = {}
+        retired: (() -> Unit)?,
+        scheduledTask: (ScheduledTask) -> Unit
     ): ScheduledTask? {
         val scheduler = entity.scheduler
         return scheduler.runAtFixedRate(plugin, scheduledTask, retired, initialDelay, delay)
