@@ -4,7 +4,7 @@ import org.junit.jupiter.api.Test
 import org.junit.jupiter.api.assertNull
 import kotlin.test.assertEquals
 
-class ServicesTests {
+object ServicesTests {
     @Test
     fun testServiceRegistry() {
         val registry = ServiceRegistry(true)
