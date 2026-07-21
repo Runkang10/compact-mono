@@ -1,8 +1,8 @@
 import io.github.runkang10.compactmono.services.KeyedRegistry
 import io.github.runkang10.compactmono.services.ServiceRegistry
 import org.junit.jupiter.api.Test
-import org.junit.jupiter.api.assertNull
 import kotlin.test.assertEquals
+import kotlin.test.assertNull
 
 object ServicesTests {
     @Test
