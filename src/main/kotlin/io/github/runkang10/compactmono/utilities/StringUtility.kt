@@ -8,6 +8,6 @@ fun strings(
 fun strings(
     separator: CharSequence = "\n",
     s: Collection<String>
-) = strings(separator, *s.toTypedArray())
+) = s.strings(separator)
 
 fun Iterable<String>.strings(separator: CharSequence = "\n") = joinToString(separator)
