@@ -5,6 +5,9 @@ import net.kyori.adventure.text.TextComponent
 import net.kyori.adventure.text.format.TextColor
 import net.kyori.adventure.text.format.TextDecoration
 
+
+fun textComponent(builder: TextComponent.() -> Unit) = Component.empty().apply(builder)
+
 fun textComponent(
     content: String,
     color: TextColor? = null,
