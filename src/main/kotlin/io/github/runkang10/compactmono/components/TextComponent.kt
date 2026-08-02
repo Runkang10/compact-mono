@@ -6,6 +6,19 @@ import net.kyori.adventure.text.format.TextColor
 import net.kyori.adventure.text.format.TextDecoration
 
 
+class AppendableTextComponent {
+    var component = Component.empty()
+
+    operator fun TextComponent.unaryPlus() {
+        component = append(this)
+    }
+}
+
+fun textComponents(builder: AppendableTextComponent.() -> Unit) = AppendableTextComponent().apply(builder).component
+
+fun textComponents(vararg components: TextComponent) = Component.textOfChildren(*components)
+
+
 fun textComponent(builder: TextComponent.() -> Unit) = Component.empty().apply(builder)
 
 fun textComponent(
