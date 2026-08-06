@@ -4,10 +4,8 @@ import com.mojang.brigadier.arguments.ArgumentType
 import com.mojang.brigadier.builder.LiteralArgumentBuilder
 import com.mojang.brigadier.builder.RequiredArgumentBuilder
 import com.mojang.brigadier.context.CommandContext
-import io.github.runkang10.compactmono.utilities.PermissionUtility
 import io.papermc.paper.command.brigadier.CommandSourceStack
 import io.papermc.paper.command.brigadier.Commands
-import org.bukkit.permissions.PermissionDefault
 
 
 typealias Literal = LiteralArgumentBuilder<CommandSourceStack>
@@ -66,22 +64,16 @@ fun <T> Argument<T>.execute(block: (ContextSourceStack) -> Unit): Argument<T> = 
 
 fun Literal.permission(
     permission: String,
-    default: PermissionDefault,
     condition: (CommandSourceStack) -> Boolean = { true }
 ): LiteralArgumentBuilder<CommandSourceStack> = requires {
-    val sender = it.sender
-    val permission = PermissionUtility.register(permission, default)
-    sender.hasPermission(permission) && condition(it)
+    it.sender.hasPermission(permission) && condition(it)
 }
 
 fun <T> Argument<T>.permission(
     permission: String,
-    default: PermissionDefault,
     condition: (CommandSourceStack) -> Boolean = { true }
 ): Argument<T> = requires {
-    val sender = it.sender
-    val permission = PermissionUtility.register(permission, default)
-    sender.hasPermission(permission) && condition(it)
+    it.sender.hasPermission(permission) && condition(it)
 }
 
 
