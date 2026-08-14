@@ -15,6 +15,8 @@ repositories {
 
 dependencies {
     compileOnly(libs.kotlin.stdlib)
+    compileOnly(libs.configurate.hocon)
+    compileOnly(libs.configurate.extra.kotlin)
     compileOnly(libs.paper)
 
     testImplementation(kotlin("test"))

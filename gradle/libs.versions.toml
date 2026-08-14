@@ -2,7 +2,9 @@
 kotlin = "2.4.10"
 maven-publish = "0.37.0"
 
+configurate = "4.2.0"
 paper = "26.2.build.+"
+
 junit = "6.1.1"
 
 jdk = "25"
@@ -15,5 +17,8 @@ maven-publish = { id = "com.vanniktech.maven.publish", version.ref = "maven-publ
 
 [libraries]
 kotlin-stdlib = { module = "org.jetbrains.kotlin:kotlin-stdlib", version.ref = "kotlin" }
+configurate-hocon = { module = "org.spongepowered:configurate-hocon", version.ref = "configurate" }
+configurate-extra-kotlin = { module = "org.spongepowered:configurate-extra-kotlin", version.ref = "configurate" }
 paper = { module = "io.papermc.paper:paper-api", version.ref = "paper" }
+
 junit = { module = "org.junit.jupiter:junit-jupiter-api", version.ref = "junit" }
