@@ -25,7 +25,7 @@ jobs:
           echo "version=${TAG#v}" >> "$GITHUB_OUTPUT"
 
       - name: Publish
-        run: ./gradlew publishToMavenCentral --no-daemon --no-build-cache --enable-native-access=ALL-UNNAMED
+        run: ./gradlew publishToMavenCentral --no-daemon --no-build-cache
         env:
           release: true
           version: ${{ steps.version.outputs.version }}
