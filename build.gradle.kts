@@ -31,7 +31,7 @@ kotlin {
     jvmToolchain(libs.versions.jdk.get().toInt())
 }
 
-if (System.getenv("release")?.toBoolean() == true) {
+if (System.getenv("release")?.toBoolean() ?: false) {
     mavenPublishing {
         publishToMavenCentral(true, DeploymentValidation.PUBLISHED)
 
