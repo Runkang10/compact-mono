@@ -1,5 +1,6 @@
 package io.github.runkang10.compactmono.commands
 
+import com.mojang.brigadier.Command
 import com.mojang.brigadier.arguments.ArgumentType
 import com.mojang.brigadier.builder.LiteralArgumentBuilder
 import com.mojang.brigadier.builder.RequiredArgumentBuilder
@@ -53,12 +54,12 @@ inline fun <T : Any, S : Any> Argument<S>.argument(
 
 fun Literal.execute(block: (ContextSourceStack) -> Unit): Literal = executes {
     block(it)
-    1
+    Command.SINGLE_SUCCESS
 }
 
 fun <T> Argument<T>.execute(block: (ContextSourceStack) -> Unit): Argument<T> = executes {
     block(it)
-    1
+    Command.SINGLE_SUCCESS
 }
 
 
