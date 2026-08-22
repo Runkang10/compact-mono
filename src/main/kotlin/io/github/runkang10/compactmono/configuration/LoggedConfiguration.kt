@@ -1,4 +1,4 @@
-package io.github.runkang10.fixedGameMode.services
+package io.github.runkang10.compactmono.configuration
 
 import io.github.runkang10.compactmono.services.ColoredLogger
 import org.spongepowered.configurate.ConfigurationOptions

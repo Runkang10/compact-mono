@@ -1,4 +1,4 @@
-package io.github.runkang10.fixedGameMode.services
+package io.github.runkang10.compactmono.configuration
 
 interface IConfiguration<T : Any> {
     sealed interface Result {

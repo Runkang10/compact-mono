@@ -1,4 +1,4 @@
-package io.github.runkang10.fixedGameMode.services
+package io.github.runkang10.compactmono.configuration
 
 import org.spongepowered.configurate.CommentedConfigurationNode
 import org.spongepowered.configurate.ConfigurationOptions
@@ -9,7 +9,6 @@ import org.spongepowered.configurate.kotlin.objectMapperFactory
 import org.spongepowered.configurate.loader.HeaderMode
 import org.spongepowered.configurate.transformation.ConfigurationTransformation
 import java.io.File
-import kotlin.io.path.createDirectories
 import kotlin.reflect.KClass
 
 class Configuration<T : Any>(
