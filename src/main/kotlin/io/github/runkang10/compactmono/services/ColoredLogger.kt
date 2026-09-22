@@ -12,36 +12,36 @@ private val DefaultMiniMessage = miniMessage
 
 class ColoredLogger(
     private val logger: ComponentLogger,
-    private val miniMessage: MiniMessage = DefaultMiniMessage
+    private val miniMessage: MiniMessage = DefaultMiniMessage,
 ) {
     fun info(
         content: String,
-        tags: TagResolver = TagResolver.resolver()
+        tags: TagResolver = TagResolver.resolver(),
     ) =
         log("<primary>", logger::info, content, tags)
 
     fun success(
         content: String,
-        tags: TagResolver = TagResolver.resolver()
+        tags: TagResolver = TagResolver.resolver(),
     ) =
         log("<success>", logger::info, content, tags)
 
     fun warning(
         content: String,
-        tags: TagResolver = TagResolver.resolver()
+        tags: TagResolver = TagResolver.resolver(),
     ) =
         log("<warning>", logger::warn, content, tags)
 
     fun error(
         content: String,
-        tags: TagResolver = TagResolver.resolver()
+        tags: TagResolver = TagResolver.resolver(),
     ) =
         log("<danger>", logger::error, content, tags)
 
     fun error(
         content: String,
         cause: Throwable,
-        tags: TagResolver = TagResolver.resolver()
+        tags: TagResolver = TagResolver.resolver(),
     ) = logger.error(miniMessage.deserialize("<danger>$content", tags), cause)
 
 
@@ -55,7 +55,7 @@ class ColoredLogger(
         color: String,
         logger: (Component) -> Unit,
         content: String,
-        tags: TagResolver
+        tags: TagResolver,
     ) {
         logger(miniMessage.deserialize("$color$content", tags))
     }

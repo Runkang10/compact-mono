@@ -1,10 +1,10 @@
-package io.github.runkang10.compactmono.services.schedulers
+package io.github.runkang10.compactmono.schedulers
 
 import io.papermc.paper.threadedregions.scheduler.ScheduledTask
 import org.bukkit.plugin.java.JavaPlugin
 
 class GlobalRegionScheduler(
-    private val plugin: JavaPlugin
+    private val plugin: JavaPlugin,
 ) {
     private val scheduler = plugin.server.globalRegionScheduler
 
@@ -15,13 +15,13 @@ class GlobalRegionScheduler(
 
     fun runDelayed(
         delay: Long,
-        scheduledTask: (ScheduledTask) -> Unit
+        scheduledTask: (ScheduledTask) -> Unit,
     ) = scheduler.runDelayed(plugin, scheduledTask, delay)
 
     fun runAtFixedRate(
         initialDelay: Long,
         delay: Long,
-        scheduledTask: (ScheduledTask) -> Unit
+        scheduledTask: (ScheduledTask) -> Unit,
     ) = scheduler.runAtFixedRate(plugin, scheduledTask, initialDelay, delay)
 
     fun cancelTasks() = scheduler.cancelTasks(plugin)

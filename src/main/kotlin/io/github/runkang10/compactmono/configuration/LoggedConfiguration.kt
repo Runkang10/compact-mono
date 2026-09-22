@@ -12,7 +12,7 @@ class LoggedConfiguration<T : Any>(
     default: T,
     options: ConfigurationOptions,
     migrations: ConfigurationTransformation.Versioned?,
-    private val logger: ColoredLogger
+    private val logger: ColoredLogger,
 ) : IConfiguration<T> {
     private val fileName = file.name
 
@@ -25,9 +25,9 @@ class LoggedConfiguration<T : Any>(
         val result = instance.load()
         when (result) {
             is IConfiguration.Result.Success<*> -> logger.success("Loaded '$fileName' configuration.")
-            is IConfiguration.Result.Failure -> logger.error(
+            is IConfiguration.Result.Failure    -> logger.error(
                 "Failed to load configuration from '$fileName'! Default configuration will be used.",
-                result.error
+                result.error,
             )
         }
         return result

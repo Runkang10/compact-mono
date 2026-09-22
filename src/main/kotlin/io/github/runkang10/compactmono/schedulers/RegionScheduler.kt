@@ -1,4 +1,4 @@
-package io.github.runkang10.compactmono.services.schedulers
+package io.github.runkang10.compactmono.schedulers
 
 import io.papermc.paper.threadedregions.scheduler.ScheduledTask
 import org.bukkit.Location
@@ -11,34 +11,34 @@ class RegionScheduler(private val plugin: JavaPlugin) {
 
     fun execute(
         location: Location,
-        runnable: () -> Unit
+        runnable: () -> Unit,
     ) = scheduler.execute(plugin, location) { runnable() }
 
     fun execute(
         world: World,
         chunkX: Int,
         chunkZ: Int,
-        runnable: () -> Unit
+        runnable: () -> Unit,
     ) = scheduler.run(plugin, world, chunkX, chunkZ) { runnable() }
 
 
     fun run(
         location: Location,
-        task: (ScheduledTask) -> Unit
+        task: (ScheduledTask) -> Unit,
     ) = scheduler.run(plugin, location, task)
 
     fun run(
         world: World,
         chunkX: Int,
         chunkZ: Int,
-        task: (ScheduledTask) -> Unit
+        task: (ScheduledTask) -> Unit,
     ) = scheduler.run(plugin, world, chunkX, chunkZ, task)
 
 
     fun runDelayed(
         location: Location,
         delayTicks: Long,
-        task: (ScheduledTask) -> Unit
+        task: (ScheduledTask) -> Unit,
     ) = scheduler.runDelayed(plugin, location, task, delayTicks)
 
     fun runDelayed(
@@ -46,7 +46,7 @@ class RegionScheduler(private val plugin: JavaPlugin) {
         chunkX: Int,
         chunkZ: Int,
         delayTicks: Long,
-        task: (ScheduledTask) -> Unit
+        task: (ScheduledTask) -> Unit,
     ) = scheduler.runDelayed(plugin, world, chunkX, chunkZ, task, delayTicks)
 
 
@@ -54,7 +54,7 @@ class RegionScheduler(private val plugin: JavaPlugin) {
         location: Location,
         initialDelayTicks: Long,
         delayTicks: Long,
-        task: (ScheduledTask) -> Unit
+        task: (ScheduledTask) -> Unit,
     ) = scheduler.runAtFixedRate(plugin, location, task, initialDelayTicks, delayTicks)
 
     fun runAtFixedRate(
@@ -63,6 +63,6 @@ class RegionScheduler(private val plugin: JavaPlugin) {
         chunkZ: Int,
         initialDelayTicks: Long,
         delayTicks: Long,
-        task: (ScheduledTask) -> Unit
+        task: (ScheduledTask) -> Unit,
     ) = scheduler.runAtFixedRate(plugin, world, chunkX, chunkZ, task, initialDelayTicks, delayTicks)
 }

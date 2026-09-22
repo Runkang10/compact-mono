@@ -7,7 +7,7 @@ fun strings(
 
 fun strings(
     separator: CharSequence = "\n",
-    s: Collection<String>
+    s: Collection<String>,
 ) = s.strings(separator)
 
 fun Iterable<String>.strings(separator: CharSequence = "\n") = joinToString(separator)

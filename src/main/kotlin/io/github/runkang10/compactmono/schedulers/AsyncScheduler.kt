@@ -1,11 +1,11 @@
-package io.github.runkang10.compactmono.services.schedulers
+package io.github.runkang10.compactmono.schedulers
 
 import io.papermc.paper.threadedregions.scheduler.ScheduledTask
 import org.bukkit.plugin.java.JavaPlugin
 import java.util.concurrent.TimeUnit
 
 class AsyncScheduler(
-    private val plugin: JavaPlugin
+    private val plugin: JavaPlugin,
 ) {
     private val scheduler = plugin.server.asyncScheduler
 
@@ -15,13 +15,13 @@ class AsyncScheduler(
     fun runDelayed(
         delay: Long,
         timeUnit: TimeUnit,
-        scheduledTask: (ScheduledTask) -> Unit
+        scheduledTask: (ScheduledTask) -> Unit,
     ) = scheduler.runDelayed(plugin, scheduledTask, delay, timeUnit)
 
     fun runAtFixedRate(
         initialDelay: Long,
         delay: Long,
         timeUnit: TimeUnit,
-        scheduledTask: (ScheduledTask) -> Unit
+        scheduledTask: (ScheduledTask) -> Unit,
     ) = scheduler.runAtFixedRate(plugin, scheduledTask, initialDelay, delay, timeUnit)
 }

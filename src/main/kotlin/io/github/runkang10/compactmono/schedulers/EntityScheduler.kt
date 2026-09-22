@@ -1,16 +1,16 @@
-package io.github.runkang10.compactmono.services.schedulers
+package io.github.runkang10.compactmono.schedulers
 
 import io.papermc.paper.threadedregions.scheduler.ScheduledTask
 import org.bukkit.entity.Entity
 import org.bukkit.plugin.java.JavaPlugin
 
 class EntityScheduler(
-    private val plugin: JavaPlugin
+    private val plugin: JavaPlugin,
 ) {
     fun run(
         entity: Entity,
         retired: (() -> Unit)?,
-        scheduledTask: (ScheduledTask) -> Unit
+        scheduledTask: (ScheduledTask) -> Unit,
     ): ScheduledTask? {
         val scheduler = entity.scheduler
         return scheduler.run(plugin, scheduledTask, retired)
@@ -20,7 +20,7 @@ class EntityScheduler(
         entity: Entity,
         delay: Long,
         retired: (() -> Unit)?,
-        scheduledTask: (ScheduledTask) -> Unit
+        scheduledTask: (ScheduledTask) -> Unit,
     ): ScheduledTask? {
         val scheduler = entity.scheduler
         return scheduler.runDelayed(plugin, scheduledTask, retired, delay)
@@ -31,7 +31,7 @@ class EntityScheduler(
         initialDelay: Long,
         delay: Long,
         retired: (() -> Unit)?,
-        scheduledTask: (ScheduledTask) -> Unit
+        scheduledTask: (ScheduledTask) -> Unit,
     ): ScheduledTask? {
         val scheduler = entity.scheduler
         return scheduler.runAtFixedRate(plugin, scheduledTask, retired, initialDelay, delay)

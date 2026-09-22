@@ -25,5 +25,5 @@ val miniMessage = MiniMessage.builder()
 
 private fun colorOf(
     name: String,
-    color: String
+    color: String,
 ) = TagResolver.resolver(name, Tag.styling(TextColor.fromHexString(color) ?: NamedTextColor.WHITE))

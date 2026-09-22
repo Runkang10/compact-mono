@@ -15,7 +15,7 @@ fun textComponent(
     content: String,
     color: TextColor? = null,
     decoration: TextDecoration? = null,
-    builder: TextComponent.() -> Unit = {}
+    builder: TextComponent.() -> Unit = {},
 ) = Component.text(content, color)
     .content(content)
     .color(color)
@@ -28,7 +28,7 @@ fun TextComponent.hoverComponent(
     content: String,
     color: TextColor? = null,
     decoration: TextDecoration? = null,
-    builder: TextComponent.() -> Unit = {}
+    builder: TextComponent.() -> Unit = {},
 ) = hoverEvent(textComponent(content, color, decoration).apply(builder))
 
 

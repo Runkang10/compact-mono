@@ -15,11 +15,11 @@ import java.util.concurrent.CompletableFuture
 
 class OfflinePlayerArgument(
     private val loader: OfflinePlayersCache,
-    errorMessage: String
+    errorMessage: String,
 ) : CustomArgumentType.Converted<OfflinePlayer, String> {
     private val errorUnknownPlayer = DynamicCommandExceptionType { name ->
         MessageComponentSerializer.message().serialize(
-            textComponent(errorMessage.replace("<name>", name.toString()))
+            textComponent(errorMessage.replace("<name>", name.toString())),
         )
     }
 
@@ -33,7 +33,7 @@ class OfflinePlayerArgument(
 
     override fun <S : Any> listSuggestions(
         context: CommandContext<S>,
-        builder: SuggestionsBuilder
+        builder: SuggestionsBuilder,
     ): CompletableFuture<Suggestions> {
         loader.names()
             .filter { it.startsWith(builder.remainingLowerCase, true) }

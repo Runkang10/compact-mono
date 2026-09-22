@@ -11,7 +11,7 @@ class ServiceRegistry(threadSafe: Boolean = false) {
     inline fun <reified T : Any> add(instance: T) = add(T::class, instance)
     fun <T : Any> add(
         kClass: KClass<T>,
-        instance: T
+        instance: T,
     ) {
         val previous = registry.putIfAbsent(kClass, instance)
         if (previous != null) throw IllegalStateException("$instance has been registered already")

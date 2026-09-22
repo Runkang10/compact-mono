@@ -1,6 +1,6 @@
 package io.github.runkang10.compactmono.services
 
-import io.github.runkang10.compactmono.services.schedulers.AsyncScheduler
+import io.github.runkang10.compactmono.schedulers.AsyncScheduler
 import org.bukkit.Bukkit
 import org.bukkit.event.EventHandler
 import org.bukkit.event.EventPriority
