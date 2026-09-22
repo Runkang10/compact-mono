@@ -16,20 +16,20 @@ typealias ContextSourceStack = CommandContext<CommandSourceStack>
 
 inline fun command(
     name: String,
-    builder: Literal.() -> Unit
+    builder: Literal.() -> Unit,
 ) = Commands.literal(name).apply(builder)
 
 
 inline fun Literal.subcommand(
     name: String,
-    builder: Literal.() -> Unit
+    builder: Literal.() -> Unit,
 ) {
     then(Commands.literal(name).apply(builder))
 }
 
 inline fun <T : Any> Argument<T>.subcommand(
     name: String,
-    builder: Literal.() -> Unit
+    builder: Literal.() -> Unit,
 ) {
     then(Commands.literal(name).apply(builder))
 }
@@ -38,7 +38,7 @@ inline fun <T : Any> Argument<T>.subcommand(
 inline fun <T : Any> Literal.argument(
     name: String,
     argument: ArgumentType<T>,
-    builder: Argument<T>.() -> Unit
+    builder: Argument<T>.() -> Unit,
 ) {
     then(Commands.argument(name, argument).apply(builder))
 }
@@ -46,7 +46,7 @@ inline fun <T : Any> Literal.argument(
 inline fun <T : Any, S : Any> Argument<S>.argument(
     name: String,
     argument: ArgumentType<T>,
-    builder: Argument<T>.() -> Unit
+    builder: Argument<T>.() -> Unit,
 ) {
     then(Commands.argument(name, argument).apply(builder))
 }
@@ -65,19 +65,17 @@ fun <T> Argument<T>.execute(block: (ContextSourceStack) -> Unit): Argument<T> = 
 
 fun Literal.permission(
     permission: String,
-    condition: (CommandSourceStack) -> Boolean = { true }
+    condition: (CommandSourceStack) -> Boolean = { true },
 ): LiteralArgumentBuilder<CommandSourceStack> = requires {
     it.sender.hasPermission(permission) && condition(it)
 }
 
 fun <T> Argument<T>.permission(
     permission: String,
-    condition: (CommandSourceStack) -> Boolean = { true }
+    condition: (CommandSourceStack) -> Boolean = { true },
 ): Argument<T> = requires {
     it.sender.hasPermission(permission) && condition(it)
 }
 
 
-inline fun <reified T : Any> ContextSourceStack.getArgument(name: String) = runCatching {
-    getArgument(name, T::class.java)
-}.getOrNull()
+inline fun <reified T : Any> ContextSourceStack.getArgument(name: String): T? = getArgument(name, T::class.java)
